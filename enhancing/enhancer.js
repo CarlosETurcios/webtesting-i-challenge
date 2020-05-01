@@ -6,11 +6,47 @@ module.exports = {
 };
 
 function succeed(item) {
-  return { ...item };
+  if (item.enhancement < 20) {
+    const itemEnhanced = {
+      name: item.name,
+      durability: item.durability,
+      enhancement: item.enhancement + 1,
+    };
+    return itemEnhanced;
+  } else if (item.enhancement === 20) {
+    const itemEnhanced = {
+      name: item.name,
+      durability: item.durability,
+      enhancement: item.enhancement,
+    };
+    return itemEnhanced;
+  }
 }
 
 function fail(item) {
-  return { ...item };
+  if (item.enhancement < 15) {
+    const failedItem = {
+      name: item.name,
+      durability: item.durability - 5,
+      enhancement: item.enhancement,
+    };
+    return failedItem;
+  } else if (item.enhancement >= 15 && item.enhancement < 16) {
+    const failedItem = {
+      name: item.name,
+      durability: item.durability - 10,
+      enhancement: item.enhancement,
+    };
+
+    return failedItem;
+  } else if (item.enhancement > 16) {
+    const failedItem = {
+      name: item.name,
+      durability: item.durability,
+      enhancement: item.enhancement - 1,
+    };
+    return failedItem;
+  }
 }
 
 function repair(item) {
